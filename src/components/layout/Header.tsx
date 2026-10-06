@@ -44,7 +44,7 @@ export function Header({ collections }: { collections: Pick<Collection, "slug" |
 
   // Mount a panel the first time it is requested, keep it mounted for exit animations.
   // (State adjusted during render — React's pattern for deriving state from changing inputs.)
-  if (panel && !loaded[panel]) setLoaded((l) => ({ ...l, [panel]: true }));
+  if (panel && panel in loaded && !loaded[panel as keyof typeof loaded]) setLoaded((l) => ({ ...l, [panel]: true }));
 
   // Lock page scroll while a panel is open.
   useEffect(() => {
@@ -65,7 +65,7 @@ export function Header({ collections }: { collections: Pick<Collection, "slug" |
               aria-haspopup="dialog"
               aria-label="Menu"
             >
-              <Icon name="menu" />
+              <Icon name="menu" size={22} strokeWidth={1.5} />
               <span className={styles.label} aria-hidden="true">
                 Menu
               </span>
@@ -77,7 +77,7 @@ export function Header({ collections }: { collections: Pick<Collection, "slug" |
               aria-haspopup="dialog"
               aria-label="Search"
             >
-              <Icon name="search" />
+              <Icon name="search" size={22} strokeWidth={1.5} />
               <span className={styles.label} aria-hidden="true">
                 Search
               </span>
@@ -100,7 +100,7 @@ export function Header({ collections }: { collections: Pick<Collection, "slug" |
               aria-label={`Shopping bag, ${count} ${count === 1 ? "item" : "items"}`}
             >
               <span className={styles.iconWrap}>
-                <Icon name="bag" />
+                <Icon name="bag" size={22} strokeWidth={1.5} />
                 {count > 0 && (
                   <span className={styles.count} aria-hidden="true">
                     {count}

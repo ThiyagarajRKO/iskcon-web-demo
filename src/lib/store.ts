@@ -97,7 +97,7 @@ export const setCurrency = (c: CurrencyCode) => currencyStore.set(c);
 
 /* ---------------- Panels (menu / search / bag) ---------------- */
 
-export type Panel = "menu" | "search" | "bag" | null;
+export type Panel = "menu" | "search" | "bag" | "filters" | null;
 const panelStore = createStore<Panel>(null);
 export const usePanel = () => useStore(panelStore);
 export const openPanel = (p: Panel) => panelStore.set(p);

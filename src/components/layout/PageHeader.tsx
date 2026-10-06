@@ -27,10 +27,19 @@ export function Breadcrumbs({ items, visible = true }: { items: Crumb[]; visible
   );
 }
 
-export function PageHeader({ title, intro, crumbs, children }: { title: string; intro?: ReactNode; crumbs: Crumb[]; children?: ReactNode }) {
+type HeaderProps = {
+  title: string;
+  intro?: ReactNode;
+  crumbs: Crumb[];
+  children?: ReactNode;
+  /** "start": left-aligned listing header (title + tabs), breadcrumbs kept only as JSON-LD */
+  align?: "center" | "start";
+};
+
+export function PageHeader({ title, intro, crumbs, children, align = "center" }: HeaderProps) {
   return (
-    <header className={`container ${styles.header}`}>
-      <Breadcrumbs items={crumbs} />
+    <header className={`container ${styles.header}`} data-align={align}>
+      <Breadcrumbs items={crumbs} visible={align === "center"} />
       <h1 className={styles.title}>{title}</h1>
       {intro && <div className={styles.intro}>{intro}</div>}
       {children}

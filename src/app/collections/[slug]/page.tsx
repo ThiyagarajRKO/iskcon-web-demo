@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { CollectionNav } from "@/components/product/CollectionNav";
-import { ProductGrid } from "@/components/product/ProductGrid";
+import introStyles from "@/components/product/ListingIntro.module.css";
+import { ProductListing } from "@/components/product/ProductListing";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getCollection, getCollections, getProductsByCollection } from "@/lib/catalog";
 import { clip, itemListJsonLd, pageMetadata } from "@/lib/seo";
@@ -38,21 +39,25 @@ export default async function CollectionPage({ params }: PageProps<"/collections
     <div className="page">
       <PageHeader
         title={collection.name}
+        align="start"
         crumbs={[
           { name: "All Creations", path: "/collections" },
           { name: collection.name, path: `/collections/${collection.slug}` },
         ]}
-        intro={<p>{collection.description}</p>}
       >
         <CollectionNav collections={collections} active={collection.slug} />
       </PageHeader>
       {products.length > 0 ? (
-        <ProductGrid products={products} />
+        <ProductListing products={products} />
       ) : (
-        <p className="container" style={{ textAlign: "center" }}>
+        <p className="container" style={{ textAlign: "center", paddingBlock: 48 }}>
           New pieces are being prepared for this collection.
         </p>
       )}
+      <section className={introStyles.intro} aria-labelledby="about-collection">
+        <h2 id="about-collection">About {collection.name}</h2>
+        <p>{collection.description}</p>
+      </section>
       <JsonLd data={itemListJsonLd(collection.name, products)} />
     </div>
   );

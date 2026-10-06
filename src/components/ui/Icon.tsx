@@ -1,7 +1,7 @@
 import type { SVGProps } from "react";
 
 const paths = {
-  menu: <path d="M3 7h18M3 12h18M3 17h18" />,
+  menu: <path d="M3.5 5h17M3.5 12h17M3.5 19h17" />,
   search: (
     <>
       <circle cx="11" cy="11" r="6.5" />
@@ -17,6 +17,14 @@ const paths = {
   close: <path d="M5 5l14 14M19 5 5 19" />,
   chevronRight: <path d="m9 5 7 7-7 7" />,
   chevronLeft: <path d="m15 5-7 7 7 7" />,
+  chevronDown: <path d="m5 9 7 7 7-7" />,
+  sliders: (
+    <>
+      <path d="M4 7h9M17 7h3M4 17h3M11 17h9" />
+      <circle cx="15" cy="7" r="2" />
+      <circle cx="9" cy="17" r="2" />
+    </>
+  ),
   arrowRight: <path d="M4 12h16m-6-6 6 6-6 6" />,
   plus: <path d="M12 5v14M5 12h14" />,
   minus: <path d="M5 12h14" />,

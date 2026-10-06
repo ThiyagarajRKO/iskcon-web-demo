@@ -14,9 +14,11 @@ type Props = {
   title?: ReactNode;
   children: ReactNode;
   footer?: ReactNode;
+  /** "sheet": large title + bare close icon (filters panel) */
+  variant?: "default" | "sheet";
 };
 
-export function Drawer({ open, side = "left", label, title, children, footer }: Props) {
+export function Drawer({ open, side = "left", label, title, children, footer, variant = "default" }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
   const returnFocus = useRef<HTMLElement | null>(null);
   // Drives the CSS transition one frame after `open` changes, so a freshly mounted panel still slides in.
@@ -71,7 +73,7 @@ export function Drawer({ open, side = "left", label, title, children, footer }: 
   }, [open]);
 
   return (
-    <div className={styles.root} data-open={shown || undefined} data-side={side} aria-hidden={!open} inert={!open}>
+    <div className={styles.root} data-open={shown || undefined} data-side={side} data-variant={variant} aria-hidden={!open} inert={!open}>
       <div className={styles.backdrop} onClick={closePanel} />
       <div ref={panelRef} className={styles.panel} role="dialog" aria-modal="true" aria-label={label} tabIndex={-1}>
         <div className={styles.head}>

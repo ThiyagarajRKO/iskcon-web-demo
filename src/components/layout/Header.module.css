@@ -57,6 +57,22 @@
   justify-content: flex-end;
 }
 
+/* right-hand icons sit flush with the right gutter */
+.right .action {
+  justify-content: flex-end;
+}
+
+/* Phone: icon positions measured from the reference header (395px wide) */
+@media (max-width: 1023px) {
+  .inner {
+    padding-inline: 18px 15px;
+  }
+
+  .left {
+    gap: 8px;
+  }
+}
+
 .logo {
   display: flex;
   align-items: center;

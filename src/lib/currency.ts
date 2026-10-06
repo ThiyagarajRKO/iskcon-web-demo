@@ -13,22 +13,23 @@ export const CURRENCIES = {
 export type CurrencyCode = keyof typeof CURRENCIES;
 export const DEFAULT_CURRENCY: CurrencyCode = "INR";
 
-const formatters = new Map<CurrencyCode, Intl.NumberFormat>();
+const formatters = new Map<string, Intl.NumberFormat>();
 
-export function formatPrice(inr: number, code: CurrencyCode = DEFAULT_CURRENCY) {
+/** Prices show two decimals (₹1,51,000.00) like the reference; pass decimals: 0 for round labels. */
+export function formatPrice(inr: number, code: CurrencyCode = DEFAULT_CURRENCY, { decimals = 2 } = {}) {
   const c = CURRENCIES[code];
-  let f = formatters.get(code);
+  const key = `${code}:${decimals}`;
+  let f = formatters.get(key);
   if (!f) {
     f = new Intl.NumberFormat(c.locale, {
       style: "currency",
       currency: code,
-      maximumFractionDigits: code === "INR" ? 0 : 2,
-      minimumFractionDigits: 0,
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
     });
-    formatters.set(code, f);
+    formatters.set(key, f);
   }
-  const value = inr * c.rate;
-  return f.format(code === "INR" ? value : Math.round(value));
+  return f.format(inr * c.rate);
 }
 
 export const isCurrency = (v: unknown): v is CurrencyCode => typeof v === "string" && v in CURRENCIES;

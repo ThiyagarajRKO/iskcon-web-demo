@@ -1,6 +1,7 @@
 import { PageHeader } from "@/components/layout/PageHeader";
 import { CollectionNav } from "@/components/product/CollectionNav";
-import { ProductGrid } from "@/components/product/ProductGrid";
+import introStyles from "@/components/product/ListingIntro.module.css";
+import { ProductListing } from "@/components/product/ProductListing";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getCollections, getProducts } from "@/lib/catalog";
 import { IMAGES } from "@/lib/data/catalog";
@@ -18,14 +19,14 @@ export default async function CollectionsPage() {
   const [collections, products] = await Promise.all([getCollections(), getProducts()]);
   return (
     <div className="page">
-      <PageHeader
-        title="All Creations"
-        crumbs={[{ name: "All Creations", path: "/collections" }]}
-        intro={<p>Sacred conches, cowries and collector shells — each hand-selected and prepared in India.</p>}
-      >
+      <PageHeader title="All Creations" align="start" crumbs={[{ name: "All Creations", path: "/collections" }]}>
         <CollectionNav collections={collections} />
       </PageHeader>
-      <ProductGrid products={products} />
+      <ProductListing products={products} />
+      <section className={introStyles.intro} aria-labelledby="about-collection">
+        <h2 id="about-collection">About the Collection</h2>
+        <p>Sacred conches, cowries and collector shells — each hand-selected and prepared in India, and shipped worldwide.</p>
+      </section>
       <JsonLd data={itemListJsonLd("All Creations", products)} />
     </div>
   );

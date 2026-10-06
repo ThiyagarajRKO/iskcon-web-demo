@@ -27,10 +27,11 @@ export function ProductCard({ product, sizes = "(min-width: 1024px) 25vw, (min-w
             loading={eager ? "eager" : "lazy"}
             fetchPriority={eager ? "high" : "auto"}
           />
-          {product.isNew && <span className={styles.badge}>New</span>}
-          {!product.inStock && <span className={styles.badge}>Sold out</span>}
         </div>
         <div className={styles.meta}>
+          {(product.isNew || !product.inStock) && (
+            <p className={styles.label}>{product.inStock ? "New" : "Sold Out"}</p>
+          )}
           <H className={styles.name}>{product.name}</H>
           <Price inr={product.price} className={styles.price} />
         </div>

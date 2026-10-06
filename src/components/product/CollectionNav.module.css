@@ -1,16 +1,20 @@
 .nav {
   width: 100%;
   min-width: 0;
-  margin-top: 8px;
+  position: relative;
+  margin-top: 0;
+  text-align: left;
 }
 
 .nav ul {
+  position: relative;
   display: flex;
-  gap: 8px;
+  flex-wrap: nowrap;
+  gap: clamp(20px, 2vw, 28px);
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   scrollbar-width: none;
-  padding-bottom: 4px;
-  /* bleed to the screen edges so chips scroll under the gutter */
+  /* bleed to the screen edges so tabs scroll under the gutter */
   margin-inline: calc(var(--gutter) * -1);
   padding-inline: var(--gutter);
 }
@@ -19,37 +23,56 @@
   display: none;
 }
 
-@media (min-width: 768px) {
-  .nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow: visible;
-    margin-inline: 0;
-    padding-inline: 0;
-  }
+/* flex containers drop end padding when they overflow — keep a gutter after the last tab */
+.nav li:last-child {
+  padding-right: var(--gutter);
 }
 
-.chip {
-  display: inline-flex;
-  align-items: center;
-  min-height: 40px;
-  padding: 0 18px;
-  border: 1px solid var(--c-line);
-  border-radius: 999px;
-  font-size: 0.8125rem;
+.tab {
+  display: block;
+  padding: 12px 0 14px;
+  border-bottom: 1px solid transparent;
+  color: var(--c-muted);
+  font-size: 1rem;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
   white-space: nowrap;
   transition:
-    border-color var(--dur) var(--ease),
-    background-color var(--dur) var(--ease),
-    color var(--dur) var(--ease);
+    color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
 }
 
-.chip:hover {
-  border-color: var(--c-ink);
+.tab:hover {
+  color: var(--c-ink);
 }
 
-.chip[aria-current="page"] {
-  background: var(--c-ink);
-  border-color: var(--c-ink);
-  color: #fff;
+.tab[aria-current="page"] {
+  color: var(--c-ink);
+  border-bottom-color: var(--c-ink);
+}
+
+/* Edge fade + chevron: signals more tabs off-screen (as on the reference) */
+.more {
+  position: absolute;
+  /* span only the text line (tab padding-top 12px / padding-bottom 6px + 1px underline) so the arrow centres on the text */
+  top: 12px;
+  bottom: 15px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  width: calc(var(--gutter) + 56px);
+}
+
+.next {
+  right: calc(var(--gutter) * -1);
+  justify-content: flex-end;
+  padding-right: var(--gutter);
+  background: linear-gradient(to left, var(--c-surface) 45%, rgb(255 255 255 / 0));
+}
+
+.prev {
+  left: calc(var(--gutter) * -1);
+  justify-content: flex-start;
+  padding-left: var(--gutter);
+  background: linear-gradient(to right, var(--c-surface) 45%, rgb(255 255 255 / 0));
 }

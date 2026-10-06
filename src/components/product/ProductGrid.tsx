@@ -4,7 +4,7 @@ import styles from "./ProductGrid.module.css";
 
 export function ProductGrid({ products }: { products: Product[] }) {
   return (
-    <ul className={`container ${styles.grid}`}>
+    <ul className={styles.grid}>
       {products.map((p, i) => (
         <li key={p.slug}>
           <ProductCard product={p} headingLevel="h2" eager={i < 2} />
