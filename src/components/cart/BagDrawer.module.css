@@ -1,0 +1,90 @@
+.empty {
+  display: grid;
+  justify-items: start;
+  gap: 24px;
+  padding-top: 24px;
+  color: var(--c-ink-soft);
+}
+
+.lines {
+  display: grid;
+  gap: 24px;
+  padding-top: 8px;
+}
+
+.line {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 16px;
+}
+
+.thumb {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--c-stone);
+  overflow: hidden;
+}
+
+.thumb img {
+  object-fit: cover;
+}
+
+.info {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  font-size: 0.875rem;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.price {
+  color: var(--c-ink-soft);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.qty {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--c-line);
+  border-radius: 999px;
+}
+
+.qty button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+}
+
+.qty span {
+  min-width: 20px;
+  text-align: center;
+}
+
+.remove {
+  font-size: 0.8125rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: var(--c-muted);
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.note {
+  margin: 6px 0 16px;
+  font-size: 0.8125rem;
+  color: var(--c-muted);
+}

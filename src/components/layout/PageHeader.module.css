@@ -1,0 +1,42 @@
+.header {
+  display: grid;
+  /* minmax(0,…) lets wide children (chip row) scroll instead of stretching the page */
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 16px;
+  padding-top: clamp(32px, 4vw, 56px);
+  padding-bottom: clamp(32px, 4vw, 56px);
+  text-align: center;
+}
+
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--c-muted);
+}
+
+.crumbs li + li::before {
+  content: "/";
+  margin-right: 6px;
+}
+
+.crumbs a:hover {
+  color: var(--c-ink);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.3rem + 2vw, 3rem);
+  letter-spacing: 0.02em;
+  word-spacing: -0.06em;
+  text-wrap: balance;
+}
+
+.intro {
+  max-width: 68ch;
+  color: var(--c-ink-soft);
+  text-wrap: pretty;
+}

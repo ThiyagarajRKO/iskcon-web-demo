@@ -1,0 +1,55 @@
+.nav {
+  width: 100%;
+  min-width: 0;
+  margin-top: 8px;
+}
+
+.nav ul {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+  /* bleed to the screen edges so chips scroll under the gutter */
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+}
+
+.nav ul::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 18px;
+  border: 1px solid var(--c-line);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  transition:
+    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.chip:hover {
+  border-color: var(--c-ink);
+}
+
+.chip[aria-current="page"] {
+  background: var(--c-ink);
+  border-color: var(--c-ink);
+  color: #fff;
+}

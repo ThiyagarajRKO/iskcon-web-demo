@@ -1,0 +1,120 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  visibility: hidden;
+  transition: visibility 0s linear 0.5s;
+}
+
+.root[data-open] {
+  pointer-events: auto;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(25 17 11 / 0.45);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+
+.root[data-open] .backdrop {
+  opacity: 1;
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 520px);
+  background: var(--c-surface);
+  color: var(--c-ink);
+  transition: transform 0.5s var(--ease-out);
+  will-change: transform;
+}
+
+.panel:focus {
+  outline: none;
+}
+
+.root[data-side="left"] .panel {
+  left: 0;
+  width: min(100%, 400px);
+  transform: translateX(-100%);
+}
+
+.root[data-side="right"] .panel {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.root[data-side="top"] .panel {
+  inset: 0 0 auto;
+  bottom: auto;
+  width: 100%;
+  max-height: 100dvh;
+  transform: translateY(-100%);
+}
+
+.root[data-open] .panel {
+  transform: none;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: var(--header-h);
+  padding-inline: var(--gutter);
+}
+
+.title {
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 0.875rem;
+}
+
+.root[data-side="left"] .head {
+  flex-direction: row-reverse;
+}
+
+.closeLabel {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .closeLabel {
+    display: inline;
+  }
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px var(--gutter) 32px;
+  /* still scrollable, scrollbar hidden */
+  scrollbar-width: none;
+}
+
+.body::-webkit-scrollbar {
+  display: none;
+}
+
+.footer {
+  padding: 20px var(--gutter) calc(20px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--c-line);
+}

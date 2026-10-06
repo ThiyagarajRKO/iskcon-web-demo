@@ -1,0 +1,41 @@
+.primary {
+  display: grid;
+  gap: 0;
+  padding-top: 16px;
+}
+
+.primaryLink {
+  display: block;
+  padding: 9px 0;
+  font-size: 1.0625rem;
+  line-height: 1.4;
+  transition: color var(--dur) var(--ease);
+}
+
+.primary:hover .primaryLink {
+  color: var(--c-muted);
+}
+
+.primary .primaryLink:hover,
+.primary .primaryLink:focus-visible {
+  color: var(--c-ink);
+}
+
+.secondary {
+  display: grid;
+  gap: 2px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--c-line);
+}
+
+.secondaryLink {
+  display: block;
+  padding: 6px 0;
+  font-size: 0.875rem;
+  color: var(--c-ink-soft);
+}
+
+.secondaryLink:hover {
+  color: var(--c-ink);
+}

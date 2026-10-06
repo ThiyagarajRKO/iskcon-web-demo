@@ -1,0 +1,137 @@
+.footer {
+  margin-top: clamp(64px, 8vw, 120px);
+  border-top: 1px solid var(--c-line);
+  font-size: 0.875rem;
+}
+
+.grid {
+  display: grid;
+  gap: 40px;
+  padding-block: 48px;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+    padding-block: 64px;
+  }
+}
+
+.col ul {
+  display: grid;
+  gap: 10px;
+}
+
+.heading {
+  margin-bottom: 18px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.intro {
+  margin-bottom: 16px;
+  color: var(--c-ink-soft);
+  max-width: 34ch;
+}
+
+.link {
+  color: var(--c-ink-soft);
+  transition: color var(--dur) var(--ease);
+}
+
+.link:hover {
+  color: var(--c-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.newsletter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 1px solid var(--c-ink);
+}
+
+.newsletter input {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+.subscribe {
+  height: 44px;
+  font-weight: 500;
+}
+
+.formStatus {
+  flex-basis: 100%;
+  font-size: 0.8125rem;
+  color: var(--c-ink-soft);
+}
+
+.formStatus:not(:empty) {
+  padding: 8px 0;
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 20px;
+  border-top: 1px solid var(--c-line);
+}
+
+.currency {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: var(--c-ink-soft);
+}
+
+.currency select {
+  min-height: 40px;
+  max-width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--c-ink);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.social {
+  display: flex;
+  gap: 24px;
+}
+
+.brand {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  padding: clamp(40px, 6vw, 80px) var(--gutter) 32px;
+  background: var(--c-stone);
+}
+
+.brandLogo {
+  font-size: clamp(2rem, 1rem + 6vw, 5.5rem);
+}
+
+.legal {
+  font-size: 0.75rem;
+  color: var(--c-muted);
+}
