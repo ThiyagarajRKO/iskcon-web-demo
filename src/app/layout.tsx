@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { getCollections } from "@/lib/catalog";
 import { organizationJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
-import { intrepid, jost } from "./fonts";
+import { iskconFont } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -58,7 +58,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const collections = (await getCollections()).map(({ slug, name, tagline }) => ({ slug, name, tagline }));
 
   return (
-    <html lang="en" className={`${intrepid.variable} ${jost.variable}`}>
+    <html lang="en" className={iskconFont.variable}>
       {/* Extensions (ColorZilla, Grammarly, etc.) inject attributes on <body> before hydration. */}
       <body suppressHydrationWarning>
         <a href="#main" className="skip-link">

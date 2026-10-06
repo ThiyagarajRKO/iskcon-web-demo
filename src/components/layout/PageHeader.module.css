@@ -31,7 +31,6 @@
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 1.3rem + 2vw, 3rem);
   letter-spacing: 0.02em;
-  word-spacing: -0.06em;
   text-wrap: balance;
 }
 
@@ -58,7 +57,6 @@
   font-weight: 300;
   line-height: 1.2;
   letter-spacing: 0.01em;
-  word-spacing: normal;
 }
 
 @media (min-width: 1024px) {

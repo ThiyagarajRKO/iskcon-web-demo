@@ -94,7 +94,6 @@
 
 .editorialTitle {
   font-family: var(--font-display);
-  word-spacing: -0.06em;
   font-size: clamp(1.625rem, 1.2rem + 1.8vw, 2.75rem);
   letter-spacing: 0.02em;
   text-wrap: balance;
@@ -182,7 +181,6 @@
 
 .duoTitle {
   font-family: var(--font-display);
-  word-spacing: -0.06em;
   font-size: clamp(1.375rem, 1.1rem + 1vw, 2rem);
 }
 
