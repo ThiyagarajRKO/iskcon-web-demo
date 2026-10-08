@@ -3,16 +3,16 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
-import type { Collection } from "@/lib/types";
 import styles from "./CollectionNav.module.css";
 
 /**
- * Text tabs. Any number of collections fit: the row scrolls sideways (scrollbar hidden)
+ * Text tabs. Any number of tabs fit: the row scrolls sideways (scrollbar hidden)
  * and the active tab is brought into view on load.
  */
-export function CollectionNav({ collections, active }: { collections: Collection[]; active?: string }) {
+export type NavItem = { href: string; name: string };
+
+export function CollectionNav({ items, active, label = "Collections" }: { items: NavItem[]; active: string; label?: string }) {
   const listRef = useRef<HTMLUListElement>(null);
-  const items = [{ slug: "", name: "All" }, ...collections];
   const [edges, setEdges] = useState({ start: true, end: true });
 
   useEffect(() => {
@@ -43,19 +43,19 @@ export function CollectionNav({ collections, active }: { collections: Collection
     listRef.current?.scrollBy({ left: dir * listRef.current.clientWidth * 0.6, behavior: "smooth" });
 
   return (
-    <nav aria-label="Collections" className={styles.nav}>
+    <nav aria-label={label} className={styles.nav}>
       {!edges.start && (
-        <button type="button" className={`${styles.more} ${styles.prev}`} onClick={() => page(-1)} aria-label="Previous collections">
+        <button type="button" className={`${styles.more} ${styles.prev}`} onClick={() => page(-1)} aria-label="Previous tabs">
           <Icon name="chevronLeft" size={18} />
         </button>
       )}
       <ul ref={listRef}>
         {items.map((c) => {
-          const current = (active ?? "") === c.slug;
+          const current = active === c.href;
           return (
-            <li key={c.slug || "all"}>
+            <li key={c.href}>
               <Link
-                href={c.slug ? `/collections/${c.slug}` : "/collections"}
+                href={c.href}
                 className={styles.tab}
                 aria-current={current ? "page" : undefined}
               >
@@ -66,7 +66,7 @@ export function CollectionNav({ collections, active }: { collections: Collection
         })}
       </ul>
       {!edges.end && (
-        <button type="button" className={`${styles.more} ${styles.next}`} onClick={() => page(1)} aria-label="Next collections">
+        <button type="button" className={`${styles.more} ${styles.next}`} onClick={() => page(1)} aria-label="Next tabs">
           <Icon name="chevronRight" size={18} />
         </button>
       )}

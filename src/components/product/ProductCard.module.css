@@ -1,6 +1,7 @@
+/* One continuous tile: the image tone runs on behind the name and price (as on the reference) */
 .card {
   height: 100%;
-  background: var(--c-surface);
+  background: var(--c-stone);
 }
 
 .link {
@@ -18,7 +19,8 @@
 
 @media (min-width: 1024px) {
   .media {
-    aspect-ratio: 6 / 5;
+    /* reference desktop tile: ~475 × 490 image area, ~600 total with name and price */
+    aspect-ratio: 475 / 490;
   }
 }
 
@@ -45,7 +47,7 @@
 
 @media (min-width: 1024px) {
   .meta {
-    padding: 20px 16px 28px;
+    padding: 24px 20px 40px;
   }
 }
 

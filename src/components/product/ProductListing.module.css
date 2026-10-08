@@ -11,17 +11,27 @@
   text-align: center;
 }
 
-/* ---------- Floating "Filters" pill ---------- */
+/* ---------- Floating "Filter & Sort by" pill ---------- */
 
-/* Last child of the listing: sticky bottom keeps it on screen while the grid is visible,
-   and it comes to rest under the grid when the listing ends. */
+/* Fixed to the bottom of the viewport for the whole page; fades away as the footer comes into view. */
 .dock {
-  position: sticky;
-  bottom: calc(24px + env(safe-area-inset-bottom));
+  position: fixed;
+  inset: auto 0 calc(24px + env(safe-area-inset-bottom));
   z-index: 20;
   display: flex;
   justify-content: center;
-  margin-top: 24px;
+  pointer-events: none;
+  transition:
+    opacity 0.4s var(--ease),
+    transform 0.4s var(--ease);
+}
+
+.dock[data-hidden] {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.dock[data-hidden] .pill {
   pointer-events: none;
 }
 
@@ -171,4 +181,79 @@
   border-color: #000;
   font-size: 0.9375rem;
   font-weight: 400;
+}
+
+/* ---------- Brand tiles (square images, label underneath, no gaps between tiles) ---------- */
+
+.brands {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  padding-inline: var(--gutter);
+  margin-bottom: clamp(48px, 6vw, 104px);
+}
+
+.brands::-webkit-scrollbar {
+  display: none;
+}
+
+/* every tile is the same fixed square; none may grow or shrink */
+.brands li {
+  flex: 0 0 clamp(132px, 11.8vw, 220px);
+  min-width: 0;
+}
+
+/* flex containers drop end padding when they overflow — a spacer keeps a gutter after the last tile */
+.brands::after {
+  content: "";
+  flex: 0 0 var(--gutter);
+}
+
+.brand {
+  display: grid;
+  gap: clamp(18px, 1.6vw, 30px);
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.brandMedia {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--c-stone);
+}
+
+.brandMedia img {
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .brand:hover .brandMedia img {
+    transform: scale(1.04);
+  }
+}
+
+.brandName {
+  justify-self: center;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  color: var(--c-muted);
+  font-size: 1rem;
+  line-height: 1.25;
+  transition:
+    color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.brand:hover .brandName,
+.brand[aria-pressed="true"] .brandName {
+  color: var(--c-ink);
+}
+
+.brand[aria-pressed="true"] .brandName {
+  border-bottom-color: var(--c-ink);
 }

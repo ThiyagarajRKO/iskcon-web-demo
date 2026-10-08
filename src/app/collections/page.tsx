@@ -1,10 +1,11 @@
 import { PageHeader } from "@/components/layout/PageHeader";
 import { CollectionNav } from "@/components/product/CollectionNav";
-import introStyles from "@/components/product/ListingIntro.module.css";
+import { ListingGuide } from "@/components/product/ListingGuide";
 import { ProductListing } from "@/components/product/ProductListing";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getCollections, getProducts } from "@/lib/catalog";
 import { IMAGES } from "@/lib/data/catalog";
+import { allCreationsGuide } from "@/lib/data/guides";
 import { itemListJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -20,13 +21,13 @@ export default async function CollectionsPage() {
   return (
     <div className="page">
       <PageHeader title="All Creations" align="start" crumbs={[{ name: "All Creations", path: "/collections" }]}>
-        <CollectionNav collections={collections} />
+        <CollectionNav
+          active="/collections"
+          items={[{ href: "/collections", name: "All" }, ...collections.map((c) => ({ href: `/collections/${c.slug}`, name: c.name }))]}
+        />
       </PageHeader>
       <ProductListing products={products} />
-      <section className={introStyles.intro} aria-labelledby="about-collection">
-        <h2 id="about-collection">About the Collection</h2>
-        <p>Sacred conches, cowries and collector shells — each hand-selected and prepared in India, and shipped worldwide.</p>
-      </section>
+      <ListingGuide guide={allCreationsGuide} />
       <JsonLd data={itemListJsonLd("All Creations", products)} />
     </div>
   );

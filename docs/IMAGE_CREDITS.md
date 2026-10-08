@@ -21,3 +21,11 @@ All images are CC0 / Public Domain from Wikimedia Commons. Replace with your own
 - `amber-cowrie.jpg` - CC0 - https://commons.wikimedia.org/wiki/File:Pendants-_cowrie_shells_MET_DP258693.jpg
 - `nautilus-chalice.jpg` - CC0 - https://commons.wikimedia.org/wiki/File:Nautilus_cup_MET_DP-13615-009.jpg
 - `cockle-sand.jpg` - CC0 - https://commons.wikimedia.org/wiki/File:Reddish_ribbed_Anadara_valve_on_sand_in_Venezuela.jpg
+- `gold-chain.jpg` - CC0 - https://commons.wikimedia.org/wiki/File:Gold_chain_in_three_strands_MET_DP257487.jpg
+- `shell-necklace.jpg` - CC0 - https://commons.wikimedia.org/wiki/File:Shell_Necklace_MET_DP-12412-001.jpg
+- `shell-pendant-necklace.jpg` - CC0 - https://commons.wikimedia.org/wiki/File:Necklace_with_shell_pendants_of_Senebtisi_MET_DP303018.jpg
+- `gold-pendant.jpg` - CC0 - https://commons.wikimedia.org/wiki/File:Gold_pendant_MET_GR739.jpg
+- `gold-ring.jpg` - CC0 - https://commons.wikimedia.org/wiki/File:Gold_ring_MET_DP109248.jpg
+- `inlay-ring.jpg` - CC0 - https://commons.wikimedia.org/wiki/File:Silver_Ring_with_Inlays_MET_vs1987_394_153.jpg
+- `shell-bracelet.jpg` - CC0 - https://commons.wikimedia.org/wiki/File:Shell_bracelet_(9980486586).jpg
+- `gold-earrings.jpg` - CC0 - https://commons.wikimedia.org/wiki/File:Silla_Kingdom_Gold_Earrings_01.jpg

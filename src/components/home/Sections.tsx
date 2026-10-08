@@ -20,7 +20,7 @@ export function CategoryGrid({ title, collections }: { title: string; collection
                   src={c.image.src}
                   alt={c.image.alt}
                   fill
-                  sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
+                  sizes="(min-width: 1024px) 22vw, 50vw"
                   quality={60}
                 />
               </span>

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { categoryTabs } from "@/lib/categories";
 import { getCollections, getProducts } from "@/lib/catalog";
 import { absoluteUrl } from "@/lib/site";
 
@@ -26,6 +27,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       images: [absoluteUrl(c.image.src)],
     })),
+    ...collections.flatMap((c) =>
+      categoryTabs(c, products.filter((p) => p.collection === c.slug))
+        .slice(1)
+        .map((t) => ({ url: absoluteUrl(t.href), changeFrequency: "weekly" as const, priority: 0.7, lastModified: now })),
+    ),
     ...products.map((p) => ({
       url: absoluteUrl(`/products/${p.slug}`),
       changeFrequency: "weekly" as const,
